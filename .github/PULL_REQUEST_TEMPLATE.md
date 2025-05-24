@@ -2,7 +2,9 @@
 ### [タイトル](https://projecteuler.net/problem=number)
 <!-- 問題文 -->
 
-## GPT-4oの回答
+## 処理速度
+
+## GPT-4.1の回答
 ```go
 
 ```
