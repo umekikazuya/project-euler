@@ -14,7 +14,6 @@ func main() {
 		if isPrimeNumber(num) && isTrancablePrimeNumber(num) {
 			result += num
 			count++
-			fmt.Println(num, count)
 		}
 		num++
 	}
