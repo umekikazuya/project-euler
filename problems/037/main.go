@@ -11,7 +11,7 @@ func main() {
 	result := 0
 	count := 0
 	for count < 11 {
-		if isPrimeNumber(num) && isTrancablePrimeNumber(num) {
+		if isPrimeNumber(num) && isTruncatablePrimeNumber(num) {
 			result += num
 			count++
 		}
@@ -36,7 +36,7 @@ func isPrimeNumber(num int) bool {
 
 // 1文字削除していって、切り取られた数字が素数(Truncatable Primes)か判定する関数
 // 素数じゃない時点でアーリーリターン
-func isTrancablePrimeNumber(num int) bool {
+func isTruncatablePrimeNumber(num int) bool {
 	target := (strconv.Itoa(num))
 	for i := 0; i < len(target); i++ {
 		// 左から
