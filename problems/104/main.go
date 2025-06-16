@@ -17,7 +17,6 @@ func solve() {
 	for !isPandigital(y.String()) {
 		x, y = y, x.Add(x, y)
 		count++
-		fmt.Println(count)
 	}
 	fmt.Println(count, y)
 }
