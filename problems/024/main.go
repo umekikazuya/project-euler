@@ -8,7 +8,6 @@ func main() {
 	solve()
 }
 
-// 979598, 1217 ns/op
 func solve() {
 	var arr = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	target := 1000000
@@ -26,7 +25,7 @@ func solve() {
 		// 先頭を固定した際のパターン数を求める
 		dars := all / len(arr)
 		y := 0
-		index := dars
+		index := 1
 		for i := 1; i < len(arr); i++ {
 			y += dars
 			if target <= y {
