@@ -9,7 +9,6 @@ func main() {
 	solve()
 }
 
-// 636	   1646968 ns/op
 func solve() {
 	var num int64 = 0
 	// 五角数285番目の次の条件を確認
