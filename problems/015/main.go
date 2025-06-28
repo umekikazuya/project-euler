@@ -6,10 +6,9 @@ func main() {
 	solve()
 }
 
-// 84004	     15635 ns/op
 func solve() {
-	mapping := make((map[int][]int))
-	for i := 0; i <= 20; i++ {
+	mapping := make((map[int8][]int))
+	for i := int8(0); i <= 20; i++ {
 		for j := 0; j <= 20; j++ {
 			if i == 0 || j == 0 {
 				mapping[i] = append(mapping[i], 1)
