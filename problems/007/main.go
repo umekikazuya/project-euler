@@ -1,26 +1,35 @@
 package main
 
-import "fmt"
-
 func main() {
-	count := 1
-	var num int32 = 2
-	for count <= 10001 {
-		if isPrimeNumber(num) {
-			count++
-		}
-		num++
-	}
-	fmt.Println(num - 1)
+	solve()
 }
 
-func isPrimeNumber(num int32) bool {
-	var x int32 = 2
-	for x*x <= num {
-		if num%x == 0 {
-			return false
+func solve() int32 {
+	var max int32 = 10001
+	var x, y int32 = 2, 1
+	for {
+		if isPrimeNumber(x) {
+			y++
+		}
+		if max < y {
+			break
 		}
 		x++
+	}
+	return x
+}
+
+// isPrimeNumber は素数チェックを実施
+func isPrimeNumber(x int32) bool {
+	if x < 2 {
+		return false
+	}
+	var a int32 = 2
+	for a*a <= x {
+		if x%a == 0 {
+			return false
+		}
+		a++
 	}
 	return true
 }
