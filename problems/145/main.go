@@ -1,10 +1,9 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"log"
-	"math/big"
+	"strconv"
 )
 
 // 問題
@@ -14,9 +13,9 @@ import (
 
 var (
 	// LIMIT 探索対象は10億
-	LIMIT = big.NewInt(1000000000)
-	ONE   = big.NewInt(1)
-	ZERO  = big.NewInt(0)
+	LIMIT = (1000000000)
+	ONE   = (1)
+	ZERO  = (0)
 )
 
 func main() {
@@ -24,18 +23,18 @@ func main() {
 }
 
 func solve() int {
-	i := big.NewInt(11)
+	i := (11)
 	result := 0
 	for {
-		copyIndex := new(big.Int).Set(i)
-		if isMutableNumber(*copyIndex) {
+		copyIndex := i
+		if isMutableNumber(copyIndex) {
 			result++
 		}
-		if i.Cmp(LIMIT) >= 0 {
+		if i >= LIMIT {
 			log.Println(i)
 			break
 		}
-		i.Add(i, ONE)
+		i++
 	}
 	return result
 }
@@ -45,16 +44,15 @@ func solve() int {
 // * ベースナンバーが10で割り切れないこと
 // * 和が正の整数
 // * 和が奇数であること
-func isMutableNumber(n big.Int) bool {
-	mod := new(big.Int).Mod(&n, big.NewInt(10))
-	if mod.Cmp(ZERO) == 0 {
+func isMutableNumber(n int) bool {
+	if n%10 == 0 {
 		return false
 	}
 	sum := sumWithReverseNumber(n)
-	if sum.Cmp(ZERO) < 0 {
+	if sum <= 0 {
 		return false
 	}
-	for _, s := range sum.String() {
+	for _, s := range strconv.Itoa(sum) {
 		if s == '0' {
 			return false
 		}
@@ -65,24 +63,23 @@ func isMutableNumber(n big.Int) bool {
 	return true
 }
 
-func sumWithReverseNumber(n big.Int) big.Int {
-	r, err := reverseBigInt(n)
+func sumWithReverseNumber(n int) int {
+	r, err := reverseInt(n)
 	if err != nil {
-		return *big.NewInt(0)
+		return (0)
 	}
-	sum := new(big.Int).Add(&n, &r)
-	return *sum
+	sum := n + r
+	return sum
 }
 
-// reverseBigInt は数字を逆にする関数
-func reverseBigInt(n big.Int) (big.Int, error) {
-	r := reverse(n.Text(10))
-	i := new(big.Int)
-	_, success := i.SetString(r, 10)
-	if !success {
-		return *big.NewInt(0), errors.New("変換ミス")
+// reverseInt は数字を逆にする関数
+func reverseInt(n int) (int, error) {
+	r := reverse(strconv.Itoa(n))
+	reverseNumber, err := strconv.Atoi(r)
+	if err != nil {
+		return 0, nil
 	}
-	return *i, nil
+	return reverseNumber, nil
 }
 
 // reverse は文字を逆にする関数

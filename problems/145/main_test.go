@@ -1,7 +1,6 @@
 package main
 
 import (
-	"math/big"
 	"testing"
 )
 
@@ -13,21 +12,21 @@ func BenchmarkSolve(b *testing.B) {
 
 func Test_solve(t *testing.T) {
 	tests := []struct {
-		name string // description of this test case
+		name string
 		want int
 	}{
 		{
 			name: "case",
-			want: 608720, // TODO: 答えが出た後に入力し直す
+			want: 608720,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			// got := solve()
-			// if got != tt.want {
-			// 	t.Errorf("solve() = %v, want %v", got, tt.want)
-			// }
+			got := solve()
+			if got != tt.want {
+				t.Errorf("solve() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
@@ -35,22 +34,48 @@ func Test_solve(t *testing.T) {
 func Test_isMutableNumber(t *testing.T) {
 	tests := []struct {
 		name string
-		arg  big.Int
+		arg  int
 		want bool
 	}{
-		{name: "case1", arg: *big.NewInt(36), want: true},
-		{name: "case2", arg: *big.NewInt(37), want: false},
-		{name: "case3", arg: *big.NewInt(12), want: true},
-		{name: "case4", arg: *big.NewInt(13), want: false},
-		{name: "case5", arg: *big.NewInt(80), want: false},
-		{name: "case6", arg: *big.NewInt(15), want: false},
-		{name: "case7", arg: *big.NewInt(16), want: true},
-		{name: "case8", arg: *big.NewInt(5), want: false},
-		{name: "case9", arg: *big.NewInt(6), want: false},
-		{name: "case10", arg: *big.NewInt(19), want: false},
-		{name: "case11", arg: *big.NewInt(99), want: false},
-		{name: "case12", arg: *big.NewInt(10), want: false},
-		{name: "case13", arg: *big.NewInt(409), want: true},
+		{
+			name: "case1", arg: 36, want: true,
+		},
+		{
+			name: "case2", arg: 37, want: false,
+		},
+		{
+			name: "case3", arg: 12, want: true,
+		},
+		{
+			name: "case4", arg: 13, want: false,
+		},
+		{
+			name: "case5", arg: 80, want: false,
+		},
+		{
+			name: "case6", arg: 15, want: false,
+		},
+		{
+			name: "case7", arg: 16, want: true,
+		},
+		{
+			name: "case8", arg: 5, want: false,
+		},
+		{
+			name: "case9", arg: 6, want: false,
+		},
+		{
+			name: "case10", arg: 19, want: false,
+		},
+		{
+			name: "case11", arg: 99, want: false,
+		},
+		{
+			name: "case12", arg: 10, want: false,
+		},
+		{
+			name: "case13", arg: 409, want: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -63,33 +88,33 @@ func Test_isMutableNumber(t *testing.T) {
 	}
 }
 
-func Test_reverseBigInt(t *testing.T) {
+func Test_reverseInt(t *testing.T) {
 	tests := []struct {
 		name string
-		arg  big.Int
-		want big.Int
+		arg  int
+		want int
 	}{
 		{
 			name: "case1",
-			arg:  *big.NewInt(123),
-			want: *big.NewInt(321),
+			arg:  123,
+			want: 321,
 		},
-		{name: "case2", arg: *big.NewInt(1234), want: *big.NewInt(4321)},
-		{name: "case3", arg: *big.NewInt(2000), want: *big.NewInt(2)},
-		{name: "case4", arg: *big.NewInt(12), want: *big.NewInt(21)},
-		{name: "case5", arg: *big.NewInt(32), want: *big.NewInt(23)},
-		{name: "case6", arg: *big.NewInt(89), want: *big.NewInt(98)},
-		{name: "case7", arg: *big.NewInt(76), want: *big.NewInt(67)},
-		{name: "case7", arg: *big.NewInt(19), want: *big.NewInt(91)},
+		{name: "case2", arg: 1234, want: 4321},
+		{name: "case3", arg: 2000, want: 2},
+		{name: "case4", arg: 12, want: 21},
+		{name: "case5", arg: 32, want: 23},
+		{name: "case6", arg: 89, want: 98},
+		{name: "case7", arg: 76, want: 67},
+		{name: "case7", arg: 19, want: 91},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
-			got, err := reverseBigInt(tt.arg)
+			got, err := reverseInt(tt.arg)
 			if err != nil {
-				t.Errorf("reverseBigInt() = %v, err %v", err, err)
+				t.Errorf("reverseInt() = %v, err %v", err, err)
 			}
-			if got.Text(10) != tt.want.Text(10) {
+			if got != tt.want {
 				t.Errorf("solve() = %v, want %v", got, tt.want)
 			}
 		})
@@ -99,24 +124,24 @@ func Test_reverseBigInt(t *testing.T) {
 func Test_sumWithReverseNumber(t *testing.T) {
 	tests := []struct {
 		name string
-		arg  big.Int
-		want big.Int
+		arg  int
+		want int
 	}{
-		{name: "case1", arg: *big.NewInt(36), want: *big.NewInt(99)},
-		{name: "case2", arg: *big.NewInt(44), want: *big.NewInt(88)},
-		{name: "case3", arg: *big.NewInt(20), want: *big.NewInt(22)},
-		{name: "case4", arg: *big.NewInt(12), want: *big.NewInt(33)},
-		{name: "case5", arg: *big.NewInt(15), want: *big.NewInt(66)},
-		{name: "case6", arg: *big.NewInt(16), want: *big.NewInt(77)},
-		{name: "case7", arg: *big.NewInt(19), want: *big.NewInt(110)},
-		{name: "case8", arg: *big.NewInt(95), want: *big.NewInt(154)},
-		{name: "case9", arg: *big.NewInt(28), want: *big.NewInt(110)},
+		{name: "case1", arg: 36, want: 99},
+		{name: "case2", arg: 44, want: 88},
+		{name: "case3", arg: 20, want: 22},
+		{name: "case4", arg: 12, want: 33},
+		{name: "case5", arg: 15, want: 66},
+		{name: "case6", arg: 16, want: 77},
+		{name: "case7", arg: 19, want: 110},
+		{name: "case8", arg: 95, want: 154},
+		{name: "case9", arg: 28, want: 110},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			got := sumWithReverseNumber(tt.arg)
-			if got.String() != tt.want.String() {
+			if got != tt.want {
 				t.Errorf("solve() = %v, want %v", got, tt.want)
 			}
 		})
