@@ -13,10 +13,10 @@ func BenchmarkSolve(b *testing.B) {
 func Test_Solve(t *testing.T) {
 	tests := []struct {
 		name string
-		n    int
-		want int
+		n    int16
+		want int16
 	}{
-		{name: "case1", n: 10, want: 6},
+		{name: "case1", n: 10, want: 7},
 		{name: "case2", n: 1000, want: 983},
 	}
 	for _, tt := range tests {
@@ -33,9 +33,9 @@ func Test_Solve(t *testing.T) {
 func Test_GetDiv(t *testing.T) {
 	tests := []struct {
 		name string
-		n    int
-		d    int
-		want int
+		n    int16
+		d    int16
+		want int16
 	}{
 		{name: "case1", n: 3, d: 7, want: 2},
 		{name: "case2", n: 4, d: 7, want: 5},
@@ -54,8 +54,8 @@ func Test_GetDiv(t *testing.T) {
 func Test_GetReciprocalCycles(t *testing.T) {
 	tests := []struct {
 		name string
-		n    int
-		want int
+		n    int16
+		want int16
 	}{
 		{name: "case1", n: 2, want: 0},
 		{name: "case2", n: 3, want: 1},
