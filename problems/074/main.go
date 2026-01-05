@@ -17,7 +17,7 @@ const (
 func solve() int32 {
 	cache := generateFactorialMap()
 	count := int32(0)
-	s := []int32{60}
+	s := []int32{}
 	for i := int32(1); i < max; i++ {
 		if _, l, _, _ := getChainLength(i, 0, s, cache); l >= chainLen {
 			count++
@@ -42,7 +42,7 @@ func getChainLength(n int32, count int32, nums []int32, cache map[int32]int32) (
 }
 
 func generateFactorialMap() map[int32]int32 {
-	cache := make(map[int32]int32, 9)
+	cache := make(map[int32]int32, 10)
 	// 数学的な整合性(ルール)
 	cache[0] = int32(1)
 	cache[1] = int32(1)
