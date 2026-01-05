@@ -19,7 +19,7 @@ func solve() int32 {
 	count := int32(0)
 	s := []int32{}
 	for i := int32(1); i < max; i++ {
-		if _, l, _, _ := getChainLength(i, 0, s, cache); l >= chainLen {
+		if _, l, _, _ := getChainLength(i, 0, s, cache); l == chainLen {
 			count++
 		}
 		s = s[:0]
