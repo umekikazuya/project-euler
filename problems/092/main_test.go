@@ -28,7 +28,7 @@ func Test_solve(t *testing.T) {
 	}
 }
 
-func Test_isEigtyNineSquareDigit(t *testing.T) {
+func Test_isEightyNineSquareDigit(t *testing.T) {
 	t.Parallel()
 	tests := []struct {
 		name string
@@ -40,9 +40,9 @@ func Test_isEigtyNineSquareDigit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := isEigtyNineSquareDigit(tt.arg)
+			got := isEightyNineSquareDigit(tt.arg)
 			if got != tt.want {
-				t.Errorf("isEigtyNineSquareDigit() = %v, want = %v", got, tt.want)
+				t.Errorf("isEightyNineSquareDigit() = %v, want = %v", got, tt.want)
 			}
 		})
 	}

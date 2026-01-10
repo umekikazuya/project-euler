@@ -12,7 +12,7 @@ func main() {
 func solve() int {
 	count := 0
 	for i := 1; i <= 10000000; i++ {
-		if isEigtyNineSquareDigit(i) {
+		if isEightyNineSquareDigit(i) {
 			count++
 		}
 	}
@@ -20,7 +20,7 @@ func solve() int {
 }
 
 // 任意の数を受け取って、各桁の二乗の和を計算し、89に判定する関数
-func isEigtyNineSquareDigit(n int) bool {
+func isEightyNineSquareDigit(n int) bool {
 	a := sumSquareDigit(n)
 	if a == 1 {
 		return false
@@ -28,7 +28,7 @@ func isEigtyNineSquareDigit(n int) bool {
 	if a == 89 {
 		return true
 	}
-	return isEigtyNineSquareDigit(a)
+	return isEightyNineSquareDigit(a)
 }
 
 // sumSquareDigit は各桁の二乗の和を計算する関数
