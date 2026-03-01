@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func BenchmarkSolve(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		solve()
 	}
 }
@@ -16,7 +16,7 @@ func Test_solve(t *testing.T) {
 	}{
 		{
 			name: "case",
-			want: 10000,
+			want: 986262,
 		},
 	}
 	for _, tt := range tests {
