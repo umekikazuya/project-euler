@@ -14,7 +14,7 @@ const LIMIT = 10000000
 func solve() int {
 	arr := generateDivisorsNumbers()
 	count := 0
-	for i := 1; i <= LIMIT; i++ {
+	for i := 2; i <= LIMIT; i++ {
 		if arr[i] == arr[i+1] {
 			count++
 		}
@@ -22,10 +22,12 @@ func solve() int {
 	return count
 }
 
-func generateDivisorsNumbers() map[int]int {
-	arr := map[int]int{}
-	for i := 1; i <= LIMIT; i++ {
-		arr[i] = numuberOfDivisors(i)
+func generateDivisorsNumbers() []int {
+	arr := make([]int, LIMIT+2)
+	for p := 1; p <= LIMIT+1; p++ {
+		for i := p; i <= LIMIT+1; i += p {
+			arr[i]++
+		}
 	}
 	return arr
 }
