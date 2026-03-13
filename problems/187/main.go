@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
 const (
@@ -20,8 +19,8 @@ func solve() int {
 }
 
 // generatePrimes は素数のスライスを生成
-func generatePrimes() [LIMIT]bool {
-	primes := [LIMIT]bool{}
+func generatePrimes() []bool {
+	primes := make([]bool, LIMIT)
 	primes[0] = true
 	primes[1] = true
 	for i := 2; i < LIMIT; i++ {
@@ -35,21 +34,29 @@ func generatePrimes() [LIMIT]bool {
 	return primes
 }
 
-func countSpecialCompositeNumber(primes [LIMIT]bool) int {
+func countSpecialCompositeNumber(primes []bool) int {
 	count := 0
 	for p, isNotPrimeP := range primes {
 		if isNotPrimeP {
 			continue
 		}
-		for q := p; q < len(primes); q++ {
-			if !primes[q] && p*q <= LIMIT {
-				log.Println(p, q)
-				count++
-			}
-			// p, q両方がLIMITの平方根まで行ったらループ終了
-			if p > 10000 && q > 10000 {
-				return count
-			}
+		// p, q両方がLIMITの平方根まで行ったらループ終了
+		if p > 10000 {
+			return count
+		}
+		count += nestCountSpecialCompositeNumber(primes, p)
+	}
+	return count
+}
+
+func nestCountSpecialCompositeNumber(primes []bool, p int) int {
+	count := 0
+	for q := p; q < len(primes); q++ {
+		if !primes[q] && p*q <= LIMIT {
+			count++
+		}
+		if p*q > LIMIT {
+			return count
 		}
 	}
 	return count
